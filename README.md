@@ -1,4 +1,4 @@
-A video game (Crowfall) guild website with an ordering system for customers and a working database system for managing orders.
+A video game (Crowfall) guild website with an ordering system for customers and a working database system for managing orders. This used to be hosted on `lionforgeguild.com` (defunct).
 
 
 - Based on Django (Python 3.9). The Django app is called `craftquests`.
