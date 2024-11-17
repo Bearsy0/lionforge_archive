@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+	<head>
+		<title>[-LFG-] Lion Forge Guild</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body class="is-preload">
+		
+
+			<nav id="nav">
+				<ul class="container">
+					<li><a href="/">Home</a></li>
+                    <li class='dropdown-more'><a href="#" onclick="return false">FAQ/Guides</a>
+                        <div class="dropdown-content">
+							<a href="#">Crowfall FAQ</a>
+							<a href="https://community.crowfall.com/topic/31367-lfg-beginners-guide-to-gathering/">Gathering Guide</a>
+                            <a href="https://community.crowfall.com/topic/31368-lfg-beginners-guide-to-crafting/">Crafting Guide</a>                            
+                        </div>
+                    </li>
+					<li><a href="#">RP Rules & Style Guides</a></li>
+					<li><a href="#">Bazaar</a></li>
+                    <li><a href="/recruitment/">Recruitment</a></li>
+				</ul>
+			</nav>
+
+			<article id="top" class="wrapper style1">
+				<div class="container opaque-container">
+					<div class="row">
+						<div class="col-4 col-5 col-12">
+							<span class="image"><img src="images/LFG_Banner_1.png" alt="" /></span>
+						</div>
+
+
+						<!-- <div class="col-4 col-5-large col-12-medium">
+							<span class="image"><img src="images/LFG_Banner_3.png" alt="" /></span>
+						</div> -->
+						<div class="col-12">
+                            <form action="." method="post" id="crafting-request-form">
+                                {% csrf_token %}
+                                <fieldset class="col-12">
+                                    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}            
+                                    <label for="requester" id="requester-label">Requester</label>
+                                    <input type="text" name="requester" id="requester"><br><br>
+                                    
+                                    <label for="crafting_discipline" id="crafting-disc-label">Crafting discipline (note: selecting Blacksmithing will notify both Armorsmiths and Weaponsmiths)</label>
+                                    <select name="crafting_discipline" id="crafting_discipline">
+                                        <option value="ALC" name="ALC">Alchemy</option>
+                                        <option value="ARM" name="ARM">Armorsmithing</option>
+                                        <option value="BKS" name="BKS">Blacksmithing</option>
+                                        <option value="CKG" name="CKG">Cooking</option>
+                                        <option value="JWL" name="JWL">Jewelcrafting</option>
+                                        <option value="LTW" name="LTW">Leatherworking</option>
+                                        <!-- <option value="NEC" name="NEC" disabled>Necromancy</option> -->
+                                        <option value="RUN" name="RUN">Runemaking</option>
+                                        <!-- <option value="STO" name="STO" disabled>Stonemasonry</option> -->
+                                        <option value="WPN" name="WPN">Weaponsmithing</option>
+                                        <option value="WOO" name="WOO">Woodworking</option>
+                                    </select><br>
+
+                                    <label for="rarity" id="rarity-label">Rarity</label>
+                                    <select name="rarity" id="rarity">
+                                        <option selected></option>
+                                        <option value="C">Common</option>
+                                        <option value="U">Uncommon</option>
+                                        <option value="R">Rare</option>
+                                        <option value="E">Epic</option>
+                                        <option value="L">Legendary</option>
+                                    </select><br>
+                                    
+                                    <label for="item_name" id="item-name-label">Item name</label>
+                                    <select id="item-selector">
+                                        
+                                    </select>                                    
+                                    <input type="text" name="item_name" id="item_name" style="display:none"><br>
+                                    
+                                    <label for="quantity" id="quantity-label">Quantity</label>
+                                    <input type="number" min="1" step="1" name="quantity" id="quantity"><br><br>                                    
+
+                                    <label for="resource_provided">Can you provide materials?</label>
+                                    <select name="resource_provided" id="resource_provided">
+                                        <option value=0>No</option>
+                                        <option value=1>Yes</option>
+                                    </select><br>
+
+                                    <div id="stats-div" class="hidden-craft-div">
+                                        <label>Select stats</label>
+                                        <textarea name="stats" id="stats" style="display:none"></textarea><br>
+                                        <p id="stats-display"></p>
+                                        <label for="stats" id='stats-labeler'>Select stats (put most important stats first)</label>
+                                        <div id="stats-selector">                                        
+                                            
+                                        </div><br>                                        
+                                    </div>
+                                    
+                                    <label for="special_instruction" >Special instruction (optional). 
+                                        For example, max experimentation points on armor or use treated steel or use hunger shard, etc.
+                                        If leaving to crafter's choice, give some context like "I'm a Vindicator".
+                                    </label>
+                                    <input type="text" name="special_instruction" id="special_instruction"><br>
+
+                                    <label for="custom_name">Custom item name (optional, not always possible)</label>
+                                    <input type="text" name="custom_name" id="custom_name"><br><br>
+
+                                </fieldset>
+                                <input type="button" value="Place order" id="validate">
+                            </form>
+                        </div>
+					</div>
+				</div>
+				<ul id="copyright">
+					<center><li style="color:#fff">&copy; Lion Forge Guild 2021. Made by Bearsy. All rights reserved.</li></center>					
+				</ul>
+			</article>
+						
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+            <script src="{% static 'assets/js/addcraft.js' %}"></script>
+	</body>
+</html>

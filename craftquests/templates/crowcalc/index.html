@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>My test page</title>
+    </head>
+    <body>
+    <form method='GET' action="{% url 'search' %}">
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <input type="text" name="item_name" placeholder="Search items"/>
+        <input type="submit"  value="Submit"/>
+    </form>
+    {% if query %}
+        {% if results %}
+            <ul>
+            {% for item in results %}
+                <li>{{ item }}</li>
+                <!-- <li><a href="{% url 'get_items' item %}">{{ item }}</a></li> -->
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Query returned no results.</p>
+        {% endif %}
+    {% endif %} 
+    </body>
+</html>

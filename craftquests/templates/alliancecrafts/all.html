@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>My test page</title>
+    </head>
+    <body>
+    <h1>Active Claimed Requests</h1> 
+    {% if claimed_req %}
+        <ul>
+        {% for item in claimed_req %}
+            <li><a href="{% url 'getstatus' item.id %}">{{ item.requester }} [{{ item.crafting_discipline }}]: {{ item.quantity }}x{{ item.item_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No active requests.</p>
+    {% endif %}
+    
+    <h1>Active Unclaimed Requests</h1> 
+    {% if unclaimed_req %}
+        <ul>
+        {% for item in unclaimed_req %}
+            <li><a href="{% url 'getstatus' item.id %}">{{ item.requester }} [{{ item.crafting_discipline }}]: {{ item.quantity }}x{{ item.item_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No active requests.</p>
+    {% endif %}
+
+    <h1>Completed Requests </h1> 
+    {% if completed_req %}
+        <ul>
+        {% for item in completed_req %}
+            <li><a href="{% url 'getstatus' item.id %}">{{ item.requester }} [{{ item.crafting_discipline }}]: {{ item.quantity }}x{{ item.item_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No completed requests.</p>
+    {% endif %}
+    <ul id="copyright">
+        <center><li style="color:#fff">&copy; Lion Forge Guild 2021. Made by Bearsy. All rights reserved.</li></center>					
+    </ul>
+    
+    </body>
+</html>
